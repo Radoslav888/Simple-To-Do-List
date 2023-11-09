@@ -38,7 +38,18 @@
         </ul>
     </header>
     <main>
-
+        {% if tasks %}
+            {% for task in tasks %}
+                <div class="task-view">
+                    <div class="task-info">
+{#                        <a href="{% url 'task details' slug=task.slug %}#task">{{ task.name }}</a>#}
+                        <h3>Status: {{ task.status }}</h3>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>No tasks yet!</h1>
+        {% endif %}
         <div>&plus;</div>
     </main>
     <footer>

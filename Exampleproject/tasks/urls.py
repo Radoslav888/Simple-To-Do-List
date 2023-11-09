@@ -4,5 +4,9 @@ from django.urls import path, include
 from Exampleproject.tasks.views import taskboard
 
 urlpatterns = [
-    path('', taskboard, name='taskboard'),
+    path('<int:pk>/', taskboard, name='taskboard'),
+    # path('add/', add_task, name='add task'),
+    # path('edit/<str:slug>', edit_task, name='edit task'),
+    # path('delete/<str:slug>', DeleteTaskView.as_view(), name='delete task'),
+    # path('<str:slug>/', TaskDetailsView.as_view(), name='listing task'),
 ]
