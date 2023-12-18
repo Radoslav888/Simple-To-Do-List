@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TODO</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/auth.css' %}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'index' %}"><img src="{% static 'images/todo.png'%}" alt="logo" width="100px"></a>
+        <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: aliceblue" href="{% url 'index' %}">Home</a>
+                </li>
+                {% if request.user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: aliceblue" href="{% url 'taskboard' pk=user.id %}">TaskBoard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: aliceblue" href="{% url 'log out' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: aliceblue" href="{% url 'register' %}">Create
+                            Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: aliceblue" href="{% url 'log in' %}">Log In</a>
+                    </li>
+                {% endif %}
+
+        </ul>
+    </header>
+    
+        {% block page_content %}
+        {% endblock %}
+    
+    <footer>
+        <p>&copy; TODO 2023</p>
+    </footer>
+</body>
+</html>

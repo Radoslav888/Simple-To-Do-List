@@ -48,6 +48,12 @@ class Task(models.Model):
         blank=True,
     )
 
+    publication_date = models.DateField(
+        blank=True,
+        null=False,
+        auto_now=True,
+    )
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
