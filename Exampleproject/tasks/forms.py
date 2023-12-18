@@ -20,3 +20,16 @@ class TaskCreateForm(TaskBaseForm):
                 },
             ),
         }
+
+class TaskEditForm(TaskBaseForm):
+    class Meta:
+        model = Task
+        exclude = ('publication_date', 'user', 'slug',)
+        widgets = {
+            'description': forms.Textarea(
+                attrs={
+                    'cols': 40,
+                    'rows': 10,
+                },
+            ),
+        }

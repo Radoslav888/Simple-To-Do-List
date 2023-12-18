@@ -10,7 +10,7 @@ UserModel = get_user_model()
 
 class Task(models.Model):
     MIN_NAME_LENGTH = 3
-    MAX_NAME_LENGTH = 50
+    MAX_NAME_LENGTH = 20
 
     MIN_DESCRIPTION_LENGTH = 10
     MAX_DESCRIPTION_LENGTH = 600

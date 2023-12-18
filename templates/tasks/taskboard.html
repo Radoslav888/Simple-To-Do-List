@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <div class="task-view"></div>
+    <div class="task-view">
         {% if tasks %}
             {% for task in tasks %}
                 {% if task.status == False %}
-                    <div class="task-info">
+                    <div class="task-info" id="{{task.slug}}">
                     
                 {% else %}
-                <div class="task-info done">
+                <div class="task-info done" id="{{task.slug}}">
                 {% endif %}
                 {#<a href="{% url 'task details' slug=task.slug %}#task">{{ task.name }}</a>#}
-                        <h2>Task: {{task.name}}</h2>
-                        <p>Description: {{task.description}}</p>
+                        <h2>{{task.name}}</h2>
+                        <p class="desc">Description:<br> {{task.description}}</p>
                         <!-- <h3>Status: {{ task.status }}</h3> -->
-                        <time>Publication date: {{task.publication_date}}</time>
+                        <a href="{% url 'edit task' slug=task.slug%}" ><img class="edit-button" src="{% static 'images/edit.svg' %}" width="20px"></a>
+                        <a href="{% url 'delete task' slug=task.slug %}" ><img class="delete-button" src="{% static 'images/delete.svg' %}" width="20px"></a>
+                        <p class="date">Publication date: {{task.publication_date}}</p>
                 </div>
             {% endfor %}
         {% else %}
@@ -47,7 +49,7 @@
 
                 {% if tasks.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ listings.next_page_number }}" aria-label="Next">
+                        <a class="page-link" href="?page={{ tasks.next_page_number }}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -59,8 +61,8 @@
             </ul>
         </nav>
     {% endif %}
-    <div class="add-task">
-        <a href="{% url 'add task'%}">&plus;</div>
-    </div>
+    
+        <a class="add-task"href="{% url 'add task'%}">&plus;</a>
+    
             
 {% endblock %}
